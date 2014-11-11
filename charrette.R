@@ -1,6 +1,8 @@
-uva = dbConnect(MySQL(), user="publicread", password="", dbname="DH2014", host="dbm2.itc.virginia.edu")
-charrette.df = dbReadTable(uva, "charrette_map")
-dbDisconnect(uva)
+#uva = dbConnect(MySQL(), user="publicread", password="", dbname="DH2014", host="dbm2.itc.virginia.edu")
+#charrette.df = dbReadTable(uva, "charrette_map")
+#dbDisconnect(uva)
+
+charrette.df = read.csv(charrette.csv)
 
 colnames(charrette.df)   = c("rid","rtype","did","dtype")
 charrette.melt.df = melt(charrette.df[c('rtype','did')],id=c('rtype'),measure=c('did'))
