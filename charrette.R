@@ -1,11 +1,16 @@
-#uva = dbConnect(MySQL(), user="publicread", password="", dbname="DH2014", host="dbm2.itc.virginia.edu")
-#charrette.df = dbReadTable(uva, "charrette_map")
-#dbDisconnect(uva)
+charrette.df = read.csv("charrette.csv")
+colnames(charrette.df) = c("rid","rtype","did","dtype")
 
-charrette.df = read.csv(charrette.csv)
+figures = charrette.df$rtype
+characters = charrette.df$did
 
-colnames(charrette.df)   = c("rid","rtype","did","dtype")
-charrette.melt.df = melt(charrette.df[c('rtype','did')],id=c('rtype'),measure=c('did'))
-charrette.cast.df = cast(charrette.melt.df, rtype ~ value)
-charrette.matrix  = as.matrix(charrette.cast.df)
-corrplot(charrette.matrix,method="shade",is.corr=FALSE)
+figures.table = table(figures)
+characters.table = table(characters)
+
+plot(characters)
+
+
+#charrette.melt.df = melt(charrette.df[c('rtype','did')],id=c('rtype'),measure=c('did'))
+#charrette.cast.df = cast(charrette.melt.df, rtype ~ value)
+#charrette.matrix  = as.matrix(charrette.cast.df)
+#corrplot(charrette.matrix,method="shade",is.corr=FALSE)
